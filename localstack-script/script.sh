@@ -1,0 +1,1 @@
+awslocal secretsmanager create-secret --name /secret/spring-boot-app --secret-string '{"property1": "property1-value", "property2": "proerty2-value"}'

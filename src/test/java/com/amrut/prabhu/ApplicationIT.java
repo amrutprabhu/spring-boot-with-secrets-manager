@@ -50,6 +50,8 @@ class ApplicationIT {
     static void beforeAll() throws IOException, InterruptedException {
         System.setProperty("spring.cloud.aws.secretsmanager.endpoint", localStackContainer.getEndpointOverride(LocalStackContainer.Service.SECRETSMANAGER).toString());
         System.setProperty("spring.cloud.aws.secretsmanager.region", localStackContainer.getRegion());
+        System.setProperty("spring.cloud.aws.credentials.access-key", "none");
+        System.setProperty("spring.cloud.aws.credentials.secret-key", "none");
     }
 
     @DynamicPropertySource

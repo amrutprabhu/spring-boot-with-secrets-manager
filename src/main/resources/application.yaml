@@ -1,0 +1,35 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - env
+spring:
+
+#Database Configuration
+  datasource:
+    url: jdbc:mysql://localhost:3306/database
+    username: ${dbuser}
+    password: ${dbpassword}
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+#  AWS configuration
+  cloud:
+    aws:
+      secretsmanager:
+        region: eu-central-1
+        endpoint: http://localhost:4566
+#
+#      credentials:
+#        access-key: none
+#        secret-key: none
+          
+#      credentials:
+#        profile:
+#          name: localstack
+  config:
+    import:
+    - aws-secretsmanager:/secret/spring-boot-app;/secret/db-credential
+    - optional:aws-secretsmanager:/secrets/optional-secret

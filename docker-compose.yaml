@@ -4,15 +4,21 @@ services:
   localstack:
     image: localstack/localstack
     ports:
-      - "4566:4566"            # LocalStack Gateway
+      - "4566:4566"            # LocalStack endpoint
       - "4510-4559:4510-4559"  # external services port range
     environment:
-      - DEBUG=${DEBUG-}
-      - PERSISTENCE=${PERSISTENCE-}
-      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
       - DOCKER_HOST=unix:///var/run/docker.sock
       - DEFAULT_REGION=eu-central-1
     volumes:
       - ./localstack-script:/docker-entrypoint-initaws.d
-      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+#      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
+  mysql:
+    image: mysql/mysql-server:5.7
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: database
+      MYSQL_USER: user1
+      MYSQL_PASSWORD: password

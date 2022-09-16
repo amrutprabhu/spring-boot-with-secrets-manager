@@ -22,5 +22,5 @@ jobs:
       - name: Check Maven Version
         run: mvn --version
 
-      - name: Build project with spring boot plugin
+      - name: Build project and run Integration tests
         run: mvn clean verify

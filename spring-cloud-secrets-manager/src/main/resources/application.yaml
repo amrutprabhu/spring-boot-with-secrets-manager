@@ -1,9 +1,0 @@
-cloud:
-  aws:
-    credentials:
-      profile-name: personal
-spring:
-  config:
-    import: aws-secretsmanager:/secret/spring-boot-app
-
-    

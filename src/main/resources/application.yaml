@@ -4,8 +4,9 @@ management:
       exposure:
         include:
         - env
-spring:
 
+
+spring:
 #Database Configuration
   datasource:
     url: jdbc:mysql://localhost:3306/database
@@ -21,14 +22,13 @@ spring:
       secretsmanager:
         region: eu-central-1
         endpoint: http://localhost:4566
-#
-#      credentials:
-#        access-key: none
-#        secret-key: none
+      credentials:
+        access-key: none
+        secret-key: none
           
 #      credentials:
 #        profile:
-#          name: localstack
+#          name: personal
   config:
     import:
     - aws-secretsmanager:/secret/spring-boot-app;/secret/db-credential

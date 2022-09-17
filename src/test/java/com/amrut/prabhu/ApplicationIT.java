@@ -60,7 +60,7 @@ class ApplicationIT {
     }
 
     @Test
-    void contextLoads() throws Exception {
+    void testApplicationLoadsAndServesRequests() throws Exception {
         //Given
         Model model = new Model();
         model.setId(1);

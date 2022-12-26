@@ -30,3 +30,12 @@ jobs:
 
       - name: Build project and run Integration tests
         run: mvn clean verify
+
+      - name: Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Tests Results
+          path: "**/surefire-reports/*.xml"
+          reporter: java-junit
+          fail-on-error: true

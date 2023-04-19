@@ -2,16 +2,14 @@ version: "3.8"
 
 services:
   localstack:
-    image: localstack/localstack
+    image: localstack/localstack:2.0
     ports:
       - "4566:4566"            # LocalStack endpoint
 #      - "4510-4559:4510-4559"  # external services port range
     environment:
       - DOCKER_HOST=unix:///var/run/docker.sock
-      - DEFAULT_REGION=eu-central-1
     volumes:
-      - ./localstack-script:/docker-entrypoint-initaws.d
-#      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - ./localstack-script:/etc/localstack/init/ready.d
       - "/var/run/docker.sock:/var/run/docker.sock"
   mysql:
     image: mysql/mysql-server:5.7

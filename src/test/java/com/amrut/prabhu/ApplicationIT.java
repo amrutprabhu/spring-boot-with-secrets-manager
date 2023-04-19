@@ -36,8 +36,8 @@ class ApplicationIT {
     @Container
     private static LocalStackContainer localStackContainer = new LocalStackContainer(DockerImageName.parse("localstack/localstack"))
             // to create secrets on startup
-            .withCopyFileToContainer(MountableFile.forClasspathResource("script.sh"),
-                    "/docker-entrypoint-initaws.d/")
+            .withCopyFileToContainer(MountableFile.forClasspathResource("script.sh",777),
+                    "/etc/localstack/init/ready.d/")
             .withServices(LocalStackContainer.Service.SECRETSMANAGER);
 
     @Container

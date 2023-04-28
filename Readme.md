@@ -5,3 +5,18 @@ We will also then run LocalStack on our system using docker, initialize it with 
 communicating with the real AWS Secrets Manager service. 
 
 We will then test our application using LocalStack Container.
+
+Command to conect to localstack :
+```shell
+
+```
+
+## Changelog
+
+-----
+### Sprng Boot 3.0 Update
+
+- Change mount file location for localstack. Noticed `/docker-entrypoint-initaws.d` was not working.
+- Script to initialize localstack must be now executable. hence updated permissions.
+- Annotating `@restController("/")` was not working, So moved the paths to the individuals mappings.
+ 

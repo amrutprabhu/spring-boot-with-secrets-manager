@@ -28,7 +28,7 @@ spring:
           
 #      credentials:
 #        profile:
-#          name: personal
+#          name: localstack
   config:
     import:
     - aws-secretsmanager:/secret/spring-boot-app;/secret/db-credential

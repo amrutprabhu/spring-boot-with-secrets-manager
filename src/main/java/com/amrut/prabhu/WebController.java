@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/")
+@RestController
 public class WebController {
     @Autowired
     private ModelRepository modelRepository;
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity get() {
         return ResponseEntity.ok(modelRepository.findAll());
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity save(@RequestBody Model model) {
         return ResponseEntity.ok(modelRepository.save(model));
     }

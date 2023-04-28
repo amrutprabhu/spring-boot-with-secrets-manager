@@ -1,3 +1,4 @@
+
 name: Build Project
 
 on:
@@ -10,10 +11,10 @@ on:
 
 jobs:
   verify-project-build:
+    permissions: # should be removed by this MR: https://github.com/dorny/test-reporter/pull/174/
+      statuses: write
+      checks: write
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-    name: Spring Boot AWS secret manager Integration
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -25,8 +26,15 @@ jobs:
           distribution: 'adopt'
           java-package: 'jdk'
 
-      - name: Check Maven Version
-        run: mvn --version
-
-      - name: Build project and run Integration tests
+      - name: Build the project
+        #        working-directory: ${{ matrix.projects }}
         run: mvn clean verify
+
+      - name: Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Tests Results
+          path: "**/surefire-reports/*.xml"
+          reporter: java-junit
+          fail-on-error: true

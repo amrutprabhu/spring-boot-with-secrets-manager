@@ -36,7 +36,7 @@ class ApplicationIT {
     @Container
     private static LocalStackContainer localStackContainer = new LocalStackContainer(DockerImageName.parse("localstack/localstack"))
             // to create secrets on startup
-            .withCopyFileToContainer(MountableFile.forClasspathResource("script.sh",777),
+            .withCopyFileToContainer(MountableFile.forClasspathResource("script.sh",0775),
                     "/etc/localstack/init/ready.d/")
             .withServices(LocalStackContainer.Service.SECRETSMANAGER);
 
@@ -49,7 +49,7 @@ class ApplicationIT {
     @BeforeAll
     static void beforeAll() throws IOException, InterruptedException {
         System.setProperty("spring.cloud.aws.secretsmanager.endpoint", localStackContainer.getEndpointOverride(LocalStackContainer.Service.SECRETSMANAGER).toString());
-        System.setProperty("spring.cloud.aws.secretsmanager.region", localStackContainer.getRegion());
+        System.setProperty("spring.cloud.aws.secretsmanager.region", "eu-central-1");
         System.setProperty("spring.cloud.aws.credentials.access-key", "none");
         System.setProperty("spring.cloud.aws.credentials.secret-key", "none");
     }

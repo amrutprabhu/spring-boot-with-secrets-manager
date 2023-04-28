@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   localstack:
-    image: localstack/localstack:2.0
+    image: localstack/localstack
     ports:
       - "4566:4566"            # LocalStack endpoint
 #      - "4510-4559:4510-4559"  # external services port range
